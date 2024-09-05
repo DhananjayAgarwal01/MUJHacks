@@ -92,7 +92,7 @@ def check_smart_grid_stability():
         user_input = np.array(features).reshape(1, -1)
 
         # Using the loaded model to predict the screening score
-        loaded_model = joblib.load('static/models/final_power_gen_model.joblib', mmap_mode=None)
+        loaded_model = joblib.load('static/models/PowerGen.joblib', mmap_mode=None)
         user_screening_score = loaded_model.predict_proba(user_input)[:, 1]
 
         # Outputting the screening score
@@ -177,6 +177,9 @@ def sign_in():
 def forget_password():
     return render_template('forgot_password.html')
 
+@app.route('/prediction_result')
+def prediction_result():
+    return render_template('prediction_result.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
