@@ -91,22 +91,20 @@ section .title::after {
     transform: translateX(-50%);
 }
 
-/* navbar styling */
+/* Navbar styling */
+/* Navbar styling */
 .navbar {
-    position: fixed;
-    top: 0px;
+    position: fixed; /* Make the navbar fixed at the top */
+    top: 0;
+    left: 0;
     width: 100%;
-    z-index: 999;
-    padding: 30px 0;
+    padding: 20px 0; /* Adjust padding if needed */
     font-family: 'Ubuntu', sans-serif;
-    transition: all 0.3s ease;
+    background: #111; /* Background color */
+    z-index: 1000; /* Ensure it's above other elements */
+    color: white;
     display: block;
-}
-
-.navbar.sticky {
-    padding: 15px 0;
-    background: #0ef;
-    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
 }
 
 .navbar .max-width {
@@ -119,6 +117,12 @@ section .title::after {
     color: #fff;
     font-size: 35px;
     font-weight: 600;
+    text-decoration: none;
+}
+
+.navbar .logo img {
+    height: 50px; /* Adjust based on logo size */
+    vertical-align: middle;
 }
 
 .navbar .logo a span {
@@ -126,22 +130,16 @@ section .title::after {
     transition: all 0.3s ease;
 }
 
-.navbar.sticky .logo a span {
-    color: black;
+.navbar .menu {
+    display: flex;
+    list-style: none;
 }
 
 .navbar .menu li {
-    list-style: none;
+    margin-left: 25px;
     display: inline-block;
 }
-.navbar.sticky .menu li a {
-    display: block;
-    color: black;
-    font-size: 18px;
-    font-weight: 500;
-    margin-left: 25px;
-    transition: color 0.3s ease;
-}
+
 .navbar .menu li a {
     display: block;
     color: #fff;
@@ -159,13 +157,45 @@ section .title::after {
     color: #fff;
 }
 
-/* menu btn styling */
 .menu-btn {
-    color: black;
+    display: none; /* Show only on smaller screens */
     font-size: 23px;
+    color: #fff;
     cursor: pointer;
-    display: none;
 }
+
+/* Responsive adjustments for the menu button */
+@media (max-width: 947px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .navbar .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+
+    .navbar .menu.active {
+        left: 0;
+    }
+
+    .navbar .menu li {
+        display: block;
+        margin: 20px 0;
+    }
+
+    .navbar .menu li a {
+        font-size: 25px;
+    }
+}
+
 
 .scroll-up-btn {
     position: fixed;
@@ -196,6 +226,7 @@ section .title::after {
 .scroll-up-btn:hover {
     filter: brightness(90%);
 }
+
 
 
 /* home section styling */
@@ -727,4 +758,109 @@ footer span a:hover {
         line-height: 38px;
     }
 }
+/* Form Styling */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
 
+form {
+    background: black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.form-outline {
+    margin-bottom: 20px;
+}
+
+.form-outline input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.form-outline input:focus {
+    border-color: #0ef;
+    outline: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-warning {
+    color: #ffc107;
+    border: 2px solid #ffc107;
+    background: transparent;
+}
+
+.btn-outline-warning:hover {
+    color: #fff;
+    background-color: #ffc107;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border: 2px solid #dc3545;
+    background: transparent;
+}
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.d-grid {
+    display: grid;
+}
+
+.d-grid .gap-2 {
+    gap: 10px;
+}
+
+.p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.p a {
+    color: #0ef;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.p a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-outline input {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}

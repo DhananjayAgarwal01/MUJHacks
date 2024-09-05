@@ -11,7 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'SustainaWatt'
 db = SQLAlchemy(app)
 
-class App1(db.Model):
+class check_smart_grid_stability(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     airtemperature = db.Column(db.Float(), nullable=False)
     pressure = db.Column(db.Float(), nullable=False)
@@ -65,19 +65,19 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/app1', methods=['GET','POST'])
-def app1():
+@app.route('/check_smart_grid_stability', methods=['GET','POST'])
+def check_smart_grid_stability():
     if request.method == 'POST':
         air_temperature = float(request.form['airtemperature'])
         pressure = float(request.form['pressure'])
         wind_speed = float(request.form['windspeed'])
 
-        new_App1 = App1(airtemperature=air_temperature, pressure=pressure, windspeed=wind_speed)
+        new_check_smart_grid_stability = check_smart_grid_stability(airtemperature=air_temperature, pressure=pressure, windspeed=wind_speed)
 
-        db.session.add(new_App1)
+        db.session.add(new_check_smart_grid_stability)
         db.session.commit()
 
-        user_response_app1 = {
+        user_response_check_smart_grid_stability = {
             'AirTemp': air_temperature,
             'Pressure': pressure,
             'WindSpeed': wind_speed
@@ -99,11 +99,11 @@ def app1():
         print(user_screening_score)
         flash(f"User Screening Score: {user_screening_score}")
 
-    return render_template('app1.html')
+    return render_template('check_smart_grid_stability.html')
 
-@app.route('/app2')
+@app.route('/input_form')
 def app2():
-    return render_template('app2.html')
+    return render_template('input_form.html')
 
 @app.route('/signup',  methods=['GET', 'POST']) # Accept both GET and POST requests
 def sign_up():
@@ -173,6 +173,9 @@ def sign_in():
 
     return render_template('signin.html')
 
+@app.route('/forgot_password')
+def forget_password():
+    return render_template('forgot_password.html')
 
 
 if __name__ == "__main__":
